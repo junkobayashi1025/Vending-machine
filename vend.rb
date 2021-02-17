@@ -1,20 +1,16 @@
 class VendingMachine
   MONEY = [10, 50, 100, 500, 1000].freeze
 
-  def initialize
+  def initialize(drink)
     @insert_money = 0
     @sales_amount = 0
-    @drinks = Drink.new
-    @status = Customer.new
+    @drinks = drink
   end
 
   def insert_money(money)
     if MONEY.include?(money)
       @insert_money += money
-      @status.status[:money_in_hand] -= money
       puts "現在の投入金額は#{@insert_money}円です。"
-      puts "現在の所持金は#{@status.status[:money_in_hand]}円です。"
-
     else
       puts "このお金は使えません。"
     end
@@ -26,8 +22,6 @@ class VendingMachine
 
   def refund_money
     puts "投入金額#{@insert_money}円を払い戻しいたします。"
-    @status.status[:money_in_hand] += @insert_money
-    puts "現在の所持金は#{@status.status[:money_in_hand]}円です。"
     puts "また来てね"
     @insert_money = 0
   end
@@ -90,34 +84,10 @@ class Drink
   end
 end
 
-class Customer
-  attr_reader :status
-
- def initialize
-   puts "職業を以下から選んでください"
-   puts "No.1 勇者　No.2 魔法少女 No.3 遊び人"
-   num = gets.to_i
-   case num
-   when 1
-     @status = {job:"勇者", money_in_hand: 1000, HP: 100}
-   when 2
-     @status = {job:"魔法少女", money_in_hand: 800, HP: 80}
-   else 3
-     @status = {job:"遊び人", money_in_hand: 200, HP: 10}
-   end
- end
-
- def info
-   puts "職業:#{@status[:job]}  所持金:#{@status[:money_in_hand]}  HP:#{@status[:HP]}"
- end
-end
 
 # require './vend.rb'
 
-# customer = Customer.new
-# customer.info
-
-# vm = VendingMachine.new
+# vm = VendingMachine.new(drink)
 
 # drink = Drink.new
 # drink.add("水", 100)
