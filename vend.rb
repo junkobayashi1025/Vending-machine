@@ -7,8 +7,6 @@ class VendingMachine
     @drinks = drink
     @status = customer
     @drink_stock = drink_stock
-    # @drinks = Drink.new
-    # @status = Customer.new
   end
 
   def insert_money(money)
@@ -106,7 +104,6 @@ end
 
 class Drink
   attr_reader :drink
-
   def initialize
     @drink = [{name: "コーラ", price: 120, hp_up: 30, stock: 5}]
   end
@@ -126,7 +123,6 @@ class DrinkStock
  attr_reader :stock_idx
 
  def initialize
-  @stock_idx = stock_idx
   @stock_idx = [{name: "水", stock: 1}]
  end
 
@@ -160,7 +156,20 @@ class Customer
  end
 end
 
+class Start
+  def self.start
+    drink_stock = DrinkStock.new
+    customer = Customer.new
+    drink = Drink.new
+  end
+end
+
+
+
+
 # require './vend.rb'
+
+# start = Start.new
 # drink_stock = DrinkStock.new
 # customer = Customer.new
 # drink = Drink.new
