@@ -7,6 +7,7 @@ class VendingMachine
     @drinks = drink
     @status = customer
     @drink_stock = drink_stock
+    @drink = Drink.new
   end
 
   def insert_money(money)
