@@ -1,10 +1,11 @@
 class VendingMachine
   MONEY = [10, 50, 100, 500, 1000].freeze
+  attr_reader :drinks
 
-  def initialize(drink)
+  def initialize
     @insert_money = 0
     @sales_amount = 0
-    @drinks = drink
+    @drinks = Drink.new
   end
 
   def insert_money(money)
@@ -87,12 +88,10 @@ end
 
 # require './vend.rb'
 
-# vm = VendingMachine.new(drink)
-
-# drink = Drink.new
-# drink.add("水", 100)
-# drink.add("レッドブル", 200)
-# drink.info
+# vm = VendingMachine.new
+# vm.drinks.add("水", 100)
+# vm.drinks.add("レッドブル", 200)
+# vm.drinks.info
 
 # 1000円投入する
 # vm.insert_money (1000)
